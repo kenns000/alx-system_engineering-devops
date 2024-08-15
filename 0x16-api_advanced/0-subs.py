@@ -1,16 +1,19 @@
 #!/usr/bin/python3
 """
-This module provides a function to print posts on a given subreddit using the Reddit API.
+This module provides a function to get the number of subscribers for a given subreddit using the Reddit API.
 """
 def number_of_subscribers(subreddit):
-     """Returns the number of subscribers for a given subreddit."""
+    """Returns the number of subscribers for a given subreddit."""
     import requests
 
-    sub_info = requests.get("https://www.reddit.com/r/{}/about.json"
-                            .format(subreddit),
-                            headers={"User-Agent": "My-User-Agent"},
-                            allow_redirects=False)
-    if sub_info.status_code >= 300:
+    url = "https://www.reddit.com/r/{}/about.json".format(subreddit)
+    headers = {
+            "User-Agent": "MyUserAgent"
+            }
+    response = requests.get(url, headers = headers, allow_redirects = False)
+    if response.status_code >= 300:
         return 0
 
-    return sub_info.json().get("data").get("subscribers")
+    results = response.json().get("data")
+    return results.get("subscribers")
+)
