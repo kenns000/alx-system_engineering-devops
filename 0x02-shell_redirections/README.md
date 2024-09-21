@@ -1,1 +1,1 @@
-A file printing Hello World
+0x02 Shell I/O redirections and filters
