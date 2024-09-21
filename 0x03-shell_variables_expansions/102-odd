@@ -1,7 +1,3 @@
 #!/bin/bash
-n=0
-while read line
-do
-    ((n++))
-    ((n % 2)) && echo "$line"
-done
+i=1 while read line; do test $((i % 2)) -ne 0 && echo "$line"; i=$((i + 1)); done
+
